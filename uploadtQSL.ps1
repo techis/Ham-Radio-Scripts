@@ -4,7 +4,7 @@ $logdir = $LogRootDir+$LogDate
 $tqslInstall = "C:\Program Files (x86)\TrustedQSL"
 $UploadDir = (get-location).Path
 $DefaultLocation = "QTH"
-
+$BatchFile = C:\tQSLLogs\uploadtQSL.bat
 
 if (!(Test-Path -Path $LogDir -PathType Container)) {
     New-Item -Path $LogRootDir -Name $logDate -ItemType Directory
@@ -26,7 +26,7 @@ foreach ($log in $LogsToUpload){
     }
     $Path = $UploadDir+"\"+$log.Name
     Write-host $path $Location
-    C:\tQSLLogs\uploadtQSL.bat $tqslInstall $Location $Path $logdir
+    &"$BatchFile $tqslInstall $Location $Path $logdir"
 }
 
 
